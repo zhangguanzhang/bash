@@ -1,0 +1,2 @@
+#取Centos7还是6
+RHEL=`grep -Po '^(CentOS|Red Hat).+release \K\d' /etc/redhat-release`
