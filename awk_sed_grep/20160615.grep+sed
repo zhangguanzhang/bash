@@ -1,0 +1,8 @@
+比如
+<string name="security_dashboard_summary" msgid="6757421634477554939">"Ekran kilidi, barmaq izi"</string>
+我需要修改成
+<string name="security_dashboard_summary" msgid="6757421634477554939">"Ekran kilidi, barmaq izi"</string>
+<string name="xxxx" msgid="6757421634477554939">"Ekran kilidi, barmaq izi, Face ID"</string>
+
+-----------
+grep -rl "\"security_dashboard_summary\"" ./ |xargs sed -in "s/\(\"security_dashboard_summary\".*\)\(\"<\)/&\n\1, Face ID\2/p"
