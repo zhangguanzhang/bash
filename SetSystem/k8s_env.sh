@@ -10,14 +10,14 @@ set -e
 [[ `yum repolist` =~ '!epel/' ]]  || yum install -y epel-release
 [[ `rpm -qa` =~ openssl ]] || yum install -y openssl
 
-systemctl stop firewalld && systemctl disable firewalld
-systemctl stop NetworkManager && systemctl disable NetworkManager
+systemctl disable --now firewalld
+systemctl disable --now NetworkManager
 
 #disabled the selinux
 setenforce 0
 sed -ri '/^[^#]*SELINUX=/s#=.+$#=disabled#' /etc/selinux/config
 
-systemctl enable docker && systemctl start docker
+systemctl disable --now  docker
 
 [ -f '/etc/sysctl.d/k8s.conf' ] && mv /etc/sysctl.d/{,old_}k8s.conf
 
