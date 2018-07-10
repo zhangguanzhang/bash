@@ -1,6 +1,6 @@
 #!/bin/bash
 
-trap "exec 5>&-;exec 5<$-;exit 0" 2
+trap 'exec 5>&-;exec 5<&-;exit 0' 2
 
 max_process=2
 
@@ -23,4 +23,4 @@ done
 wait
 echo 'Time:' "$((`date +%s`-start))"
 
-exec 5>$-;exec 5<$-
+exec 5>&-;exec 5<&$-
