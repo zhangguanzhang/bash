@@ -23,4 +23,4 @@ done
 wait
 echo 'Time:' "$((`date +%s`-start))"
 
-exec 5>&-;exec 5<&$-
+exec 5>&-;exec 5<&-
