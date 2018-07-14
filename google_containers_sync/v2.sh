@@ -57,7 +57,7 @@ image_pull(){
             [ $(df -h| awk  '$NF=="/"{print +$5}') -ge "$max_per" ] && { wait;img_clean; }
             read -u5
             {
-                image_tag $GCR_IMAGE_NAME $tag $MY_REPO/$MY_REPO_IMAGE_NAME
+                [ -n "$tag" ] && image_tag $GCR_IMAGE_NAME $tag $MY_REPO/$MY_REPO_IMAGE_NAME
                 echo >&5
             }&
         done < <(gcloud container images list-tags $GCR_IMAGE_NAME  --format="get(TAGS)" --filter='tags:*' | sed 's#;#\n#')
