@@ -11,7 +11,6 @@ Multi_process_init() {
     mkfifo $pipe
     exec 5<>$pipe
     rm -f $pipe
-
     seq $1 >&5
 }
 
@@ -20,7 +19,7 @@ image_tag(){
     docker pull $1:$2
     docker tag $1:$2 $3:$2
     docker rmi $1:$2
-#    docker push $4/$3:$2
+#    docker push $3:$2
 }
 
 img_clean(){
