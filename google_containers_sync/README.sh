@@ -1,4 +1,4 @@
-#软件前提
+# 软件前提
 gcloud+梯子+jq
 
 利用gcloud去查询镜像名和tags
