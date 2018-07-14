@@ -48,7 +48,7 @@ image_pull(){
         while read tag;do
         #处理latest标签
             [[ "$tag" == latest && -f "$repository_dir/$image_name"/latest.old ]] && {
-                gcloud container images list-tags --format='get(DIGEST)' GCR_IMAGE_NAME --filter="tags=latest" > $repository_dir/$image_name/latest
+                gcloud container images list-tags --format='get(DIGEST)' $GCR_IMAGE_NAME --filter="tags=latest" > $repository_dir/$image_name/latest
                 diff $repository_dir/$image_name/latest{,.old} &>/dev/null &&
                     { rm -f $repository_dir/$image_name/latest.old;continue; } ||
                     { rm $repository_dir/$image_name/latest.old;mv $repository_dir/$image_name/latest{,.old}; }
