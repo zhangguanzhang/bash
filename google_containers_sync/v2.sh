@@ -11,6 +11,7 @@ Multi_process_init() {
     mkfifo $pipe
     exec 5<>$pipe
     rm -f $pipe
+
     seq $1 >&5
 }
 
@@ -19,7 +20,7 @@ image_tag(){
     docker pull $1:$2
     docker tag $1:$2 $3:$2
     docker rmi $1:$2
-#    docker push $3:$2
+#    docker push $4/$3:$2
 }
 
 img_clean(){
@@ -50,7 +51,7 @@ image_pull(){
                 gcloud container images list-tags --format='get(DIGEST)' $GCR_IMAGE_NAME --filter="tags=latest" > $repository_dir/$image_name/latest
                 diff $repository_dir/$image_name/latest{,.old} &>/dev/null &&
                     { rm -f $repository_dir/$image_name/latest.old;continue; } ||
-                    { rm $repository_dir/$image_name/latest.old;mv $repository_dir/$image_name/latest{,.old}; }
+                    rm $repository_dir/$image_name/latest{,.old}
             }
             [ -f "$repository_dir/$image_name/$tag" ] && continue
             [ $(df -h| awk  '$NF=="/"{print +$5}') -ge "$max_per" ] && { wait;img_clean; }
