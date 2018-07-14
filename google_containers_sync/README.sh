@@ -1,6 +1,10 @@
+利用gcloud去查询镜像名和tags
+然后拉取后再改名推送
+v1是每个tag利用docker registry的v2 api去查询,有就continue,没就拉取
+
+镜像迭代是不会修改老镜像的,所以v1脚本繁琐,v2直接本地生成文件去判断同步了没
+
 v2的latest标签处理思路
-
-
 
 代码1:  有latest文件就改名为laetst.old
 代码2:  是latest标签且有latest.old文件下获取最新的sha256到latest文件，对比latest{,.old},一样就删掉老的continue,不一样就新老一起删
