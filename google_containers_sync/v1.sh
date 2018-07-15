@@ -44,7 +44,7 @@ image_pull(){
 
         GCR_TAG_LIST=($(gcloud container images list-tags $GCR_IMAGE_NAME  --format="get(TAGS)" | sed 's@;@ @g' | xargs))
         
-        REPO_TAG_LIST=($(curl -s https://hub.docker.com/v2/repositories/${MY_REPO}/$IMAGE_NAME/tags/?page_size=20 | jq -r '.results[].name' 2>&1))
+        REPO_TAG_LIST=($(curl -s https://hub.docker.com/v2/repositories/${MY_REPO}/$IMAGE_NAME/tags/?page_size=1000 | jq -r '.results[].name' 2>&1))
         # my repo don't has the image's all tag
         if [[ "${REPO_TAG_LIST[@]}" =~ error ]];then
 
