@@ -60,7 +60,7 @@ image_pull(){
                 [ -n "$tag" ] && image_tag $GCR_IMAGE_NAME $tag $MY_REPO/$MY_REPO_IMAGE_NAME
                 echo >&5
             }&
-        done < <(gcloud container images list-tags $GCR_IMAGE_NAME  --format="get(TAGS)" --filter='tags:*' | sed 's#;#\n#')
+        done < <(gcloud container images list-tags $GCR_IMAGE_NAME  --format="get(TAGS)" --filter='tags:*' | sed 's#;#\n#g')
         wait
     done < <(gcloud container images list --repository=$REPOSITORY --format="value(NAME)")
 }
