@@ -23,3 +23,8 @@ end
 111 222as  sad asdd asd end
 11123 22123 sad asdd asd end
 asdasd asdsad asd end
+[root@k8s-n1 temp]# awk -vRS=end 'NF+=0{print $0,RS}' file
+111 222 sad asdsadasdd asd end
+111 222as sad asdd asd end
+11123 22123 sad asdd asd end
+asdasd asdsad asd end
