@@ -20,3 +20,15 @@ v2的latest标签处理思路
 第二次执行碰到这个latest标签：
 代码1改名为old，代码2里获取最新sha256到latest，对比新老文件,一样就删掉老的跳过这个tag,不一样就新老一起删，一起删掉不存在标签文件触发3里的拉取
 触发推送后生成latest标签文件
+
+如果需要改代码的话,下面镜像可以拿去检测tag的分号和含有latest标签处理
+含有latest标签
+gcr.io/google_containers/addon-builder
+gcr.io/google_containers/apparmor-loader
+gcr.io/google_containers/busybox
+gcr.io/google_containers/cadvisor
+
+标签含有分号的镜像
+gcr.io/google_containers/github-transform
+gcr.io/google_containers/gke-mpi-api-server
+gcr.io/google_containers/gke-mpi-metadata-server
