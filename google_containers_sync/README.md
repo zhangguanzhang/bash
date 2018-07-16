@@ -23,12 +23,19 @@ v2的latest标签处理思路
 
 如果需要改代码的话,下面镜像可以拿去检测tag的分号和含有latest标签处理
 含有latest标签
+
 gcr.io/google_containers/addon-builder
 gcr.io/google_containers/apparmor-loader
 gcr.io/google_containers/busybox
 gcr.io/google_containers/cadvisor
 
 标签含有分号的镜像
+
 gcr.io/google_containers/github-transform
 gcr.io/google_containers/gke-mpi-api-server
 gcr.io/google_containers/gke-mpi-metadata-server
+
+参考文档
+
+https://cloud.google.com/sdk/gcloud/reference/container/images/list
+https://cloud.google.com/sdk/gcloud/reference/container/images/list-tags
