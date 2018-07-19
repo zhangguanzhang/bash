@@ -94,7 +94,7 @@ main(){
         image_pull $repo google
     done
     for repo in ${QUAY_NAMESPACE[@]};do
-        image_pull $repo quay
+        image_pull quay.io/$repo quay
     done
     exec 5>&-;exec 5<&-
 }
