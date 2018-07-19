@@ -69,6 +69,7 @@ image_pull(){
 main(){
     Multi_process_init $max_process
     image_pull
+    img_clean
     exec 5>&-;exec 5<&-
 }
 
