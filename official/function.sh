@@ -65,3 +65,42 @@ b
 [root@k8s-n1 ~]# echo ${test[@]}
 b x y z
 #---------------------
+
+#-------------参数赋值给第一个或者第二个参数----------
+#     -aN  Assign next N values to varname as array
+#     -v   Assign single value to varname
+# Return: 1 if error occurs
+# See: http://fvue.nl/wiki/Bash:_Passing_variables_by_reference
+_upvars()
+{
+    if ! (( $# )); then
+        echo "${FUNCNAME[0]}: usage: ${FUNCNAME[0]} [-v varname"\
+            "value] | [-aN varname [value ...]] ..." 1>&2
+        return 2
+    fi
+    while (( $# )); do
+        case $1 in
+            -a*)
+                # Error checking
+                [[ ${1#-a} ]] || { echo "bash: ${FUNCNAME[0]}: \`$1': missing"\
+                    "number specifier" 1>&2; return 1; }
+                printf %d "${1#-a}" &> /dev/null || { echo "bash:"\
+                    "${FUNCNAME[0]}: \`$1': invalid number specifier" 1>&2
+                    return 1; }
+                # Assign array of -aN elements
+                [[ "$2" ]] && unset -v "$2" && eval $2=\(\"\${@:3:${1#-a}}\"\) &&
+                shift $((${1#-a} + 2)) || { echo "bash: ${FUNCNAME[0]}:"\
+                    "\`$1${2+ }$2': missing argument(s)" 1>&2; return 1; }
+                ;;
+            -v)
+                # Assign single value
+                [[ "$2" ]] && unset -v "$2" && eval $2=\"\$3\" &&
+                shift 3 || { echo "bash: ${FUNCNAME[0]}: $1: missing"\
+                "argument(s)" 1>&2; return 1; }
+                ;;
+            *)
+                echo "bash: ${FUNCNAME[0]}: $1: invalid option" 1>&2
+                return 1 ;;
+        esac
+    done
+}
