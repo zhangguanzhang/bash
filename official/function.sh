@@ -12,7 +12,7 @@ quote()
 ''\''/test1/test2'\'''\'''
 #----------------------------
 
-# 转义字符的单引号然后注册到变量里
+#------转义字符的单引号然后注册到变量里------
 # @param $1  Argument to quote
 # @param $2  Name of variable to return result to
 _quote_readline_by_ref()
@@ -29,3 +29,7 @@ _quote_readline_by_ref()
     # bash-completion-devel@lists.alioth.debian.org/msg01942.html
     [[ ${!2} == \$* ]] && eval $2=${!2}
 }
+[root@k8s-n1 ~]# _quote_readline_by_ref "a'b" test
+[root@k8s-n1 ~]# echo $test
+a\'b
+#----------------------------
