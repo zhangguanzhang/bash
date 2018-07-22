@@ -12,7 +12,7 @@ tag=''
 # aquire token
 TOKEN=$(curl -s -H "Content-Type: application/json" -X POST -d '{"username": "'${UNAME}'", "password": "'${UPASS}'"}' https://hub.docker.com/v2/users/login/ | jq -r .token)
 
-# list all the images of my repo
+# list all the images of my repo  (!!!!!I think this is not correct,it can't list all the images!!!!!!!)
 curl -s https://hub.docker.com/v2/repositories/${repo}/?page_size=100 | jq -r .results[].name
 
 # get all the tags of the image
