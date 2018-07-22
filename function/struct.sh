@@ -32,8 +32,8 @@ _symbol_intern()
 
 _struct_get()
 {
-    local inst=$1
     local slot_sym=$2
+    local inst=${slot_sym}_$1
     local slot_id=$(_symbol_lookup ${slot_sym}; echo $?)
 
     eval echo \${${inst}[${slot_id}]}
@@ -41,8 +41,8 @@ _struct_get()
 
 _struct_set()
 {
-    local inst=$1
     local slot_sym=$2
+    local inst=${slot_sym}_$1
     local value=$3
     local slot_id=$(_symbol_lookup ${slot_sym}; echo $?)
 
