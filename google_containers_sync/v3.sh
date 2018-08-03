@@ -103,7 +103,7 @@ img_clean(){
         docker push $img:$tag;docker rmi $img:$tag;
         [ "$tag" != latest ] && echo $domain/$namespace/$image_name:$tag > $domain/$namespace/$image_name/$tag ||
             $@ $domain/$namespace/$image_name > $domain/$namespace/$image_name/$tag
-        [ $(time_check) -gt 45 ] && git_commit
+        [ $(( (`date +%s` - start_time)/60 ))  -gt 45 ] && git_commit
     done < <(docker images --format {{.Repository}}' '{{.Tag}}' '{{.Size}} | awk -vcut=$MY_REPO/$Prefix '$0~cut{print $0 | "sort -hk3" }')
     git_commit
 }
