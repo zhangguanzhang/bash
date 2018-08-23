@@ -154,7 +154,7 @@ image_pull(){
                     { rm -f $domain/$namespace/$image_name/latest.old;continue; } ||
                       rm $domain/$namespace/$image_name/latest{,.old}
             }
-            [ -f "$domain/$namespace/$image_name/$tag" ] && continue
+            [ -f "$domain/$namespace/$image_name/$tag" ] && { trvis_live;continue; }
             [[ $(df -h| awk  '$NF=="/"{print +$5}') -ge "$max_per" || -n $(sync_commit_check) ]] && { wait;img_clean $domain $namespace $image_name $@_latest_digest; }
             read -u5
             {
@@ -177,10 +177,15 @@ hub_tag_exist(){
     curl -s https://hub.docker.com/v2/repositories/${MY_REPO}/$1/tags/$2/ | jq -r .name
 }
 
+trvis_live(){
+    [ $(( (`date +%s` - live_start_time)/60 )) -ge 8 ] && { live_start_time=$(date +%s);echo 'for live in the travis!'; }
+}
+
 sync_domain_repo(){
     path=$1
     while read name tag;do
         img_name=$( sed 's#/#'"$interval"'#g'<<<$name )
+        trvis_live
         read -u5
         {
             [ "$( hub_tag_exist $img_name $tag )" == null ] && rm -f $name/$tag
@@ -197,8 +202,8 @@ main(){
     git_init
     install_sdk
     auth_sdk
-    Multi_process_init $(( max_process * 2 ))
-
+    Multi_process_init $(( max_process * 4 ))
+    live_start_time=$(date +%s)
     read sync_time < sync_check
     [ $(( (`date +%s` - sync_time)/3600 )) -ge 6 ] && {
         sync_domain_repo gcr.io
@@ -214,14 +219,13 @@ main(){
     for repo in ${QUAY_NAMESPACE[@]};do
         image_pull quay.io/$repo quay
         sed -i '/'"$repo"'/d' $quay_list;echo "$repo" >> $quay_list
-        git_commit
     done
     for repo in ${GOOLE_NAMESPACE[@]};do
         image_pull gcr.io/$repo google
         sed -i '/'"$repo"'/d' $google_list;echo "$repo" >> $google_list
-        git_commit
     done
 
+    git_commit  
     exec 5>&-;exec 5<&-
 }
 
