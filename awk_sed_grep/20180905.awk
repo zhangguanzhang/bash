@@ -15,10 +15,6 @@ AppType:22,AppID:2,AppNameLength:16,AppName:WiFI万能钥匙,AppUserNum:270,1575
 
 
 [root@k8s-m1 ~]# cat txt
-AppType:22,AppID:2,AppNameLength:16,AppName:WiFI万能钥匙,AppUserNum:270,1575,5130,270
-AppType:19,AppID:9,AppNameLength:12,AppName:墨迹天气,AppUserNum:90,66,1620,180
-AppType:22,AppID:133,AppNameLength:15,AppName:扫描全能王,AppUserNum:180,135,2430,270
-[root@k8s-m1 ~]# cat txt
 AppType:19,AppID:9,AppNameLength:12,AppName:墨迹天气,AppUserNum:90,66,1620,180
 AppType:22,AppID:133,AppNameLength:15,AppName:扫描全能王,AppUserNum:6,3,54,6
 AppType:22,AppID:133,AppNameLength:15,AppName:扫描全能王,AppUserNum:84,42,756,84
@@ -45,3 +41,6 @@ AppType:22,AppID:2,AppNameLength:16,AppName:WiFI万能钥匙,AppUserNum:92,537,1
 >         delete sum
 > }
 > }' txt
+AppType:22,AppID:2,AppNameLength:16,AppName:WiFI万能钥匙,AppUserNum:270,1575,5130,270
+AppType:19,AppID:9,AppNameLength:12,AppName:墨迹天气,AppUserNum:90,66,1620,180
+AppType:22,AppID:133,AppNameLength:15,AppName:扫描全能王,AppUserNum:180,135,2430,270
