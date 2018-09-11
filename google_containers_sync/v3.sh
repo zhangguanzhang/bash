@@ -118,6 +118,18 @@ google_latest_digest(){
     gcloud container images list-tags --format='get(DIGEST)' $@ --filter="tags=latest"
 }
 
+# curl -XPOST -ks 'https://console.cloud.google.com/m/gcr/entities/list' \
+#            -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.7 Safari/537.36' \
+#            -H 'Content-Type: application/json;charset=UTF-8' \
+#            -H 'Accept: application/json, text/plain, */*' \
+#            --data-binary ["google_containers"]   |
+#     awk -F'"' '/"/{if(NR==3){if(!a[$4]++)print $4}else{if(!a[$2]++)print $2}}'
+
+
+# curl -ks -XGET https://gcr.io/v2/google_containers/addon-builder/tags/list
+
+
+
 
 quay_name(){
     NS=${1#*/}
