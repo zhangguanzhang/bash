@@ -1,0 +1,205 @@
+文本为下面分割线后, 需求为
+province:814
+Map input records=100903
+省份：814生成conf文件完成！
+Map input records=100903
+符合上面匹配里的province的数字+它后一行的数字
+
+grep -Poz "province.+\n(Map.+)\n.+?conf.+\n\g'1'" txt | sed -rn '/province/{N;s#[^0-9]+([0-9]+)\n[^0-9]+([0-9]+)#\1:\2#p}'
+
+------------------
+province:815
+Map input records=101228407
+Map input records=16632004
+province:815
+Map input records=100115
+省份：815生成conf文件完成！
+Map input records=100115
+province:832
+Map input records=419219960
+Map input records=88737324
+province:832
+Map input records=631748
+省份：832生成conf文件完成！
+Map input records=631748
+province:836
+Map input records=190074183
+Map input records=28360905
+province:836
+Map input records=206977
+省份：836生成conf文件完成！
+Map input records=206977
+province:844
+Map input records=411093194
+Map input records=76352397
+province:844
+Map input records=1000401
+省份：844生成conf文件完成！
+Map input records=1000401
+province:850
+Map input records=433971979
+Map input records=39153141
+province:850
+Map input records=203242
+省份：850生成conf文件完成！
+Map input records=203242
+province:846
+Map input records=40583355
+Map input records=10054518
+province:846
+province:861
+Map input records=184237672
+Map input records=50405848
+province:861
+Map input records=223557
+省份：861生成conf文件完成！
+Map input records=223557
+province:864
+Map input records=101793533
+Map input records=9655331
+province:864
+Map input records=48279
+省份：864生成conf文件完成！
+Map input records=48279
+province:845
+Map input records=231928882
+Map input records=43806899
+province:845
+Map input records=406081
+省份：845生成conf文件完成！
+Map input records=406081
+province:821
+Map input records=100372284
+Map input records=18619682
+province:821
+Map input records=108297
+省份：821生成conf文件完成！
+Map input records=108297
+province:833
+Map input records=533636810
+Map input records=43833567
+province:833
+Map input records=404702
+省份：833生成conf文件完成！
+Map input records=404702
+province:853
+Map input records=109029691
+Map input records=25474058
+province:853
+Map input records=238213
+省份：853生成conf文件完成！
+Map input records=238213
+province:862
+Map input records=349398102
+Map input records=26211259
+province:862
+province:841
+Map input records=214757371
+Map input records=44704118
+province:841
+Map input records=229348
+省份：841生成conf文件完成！
+Map input records=229348
+province:831
+Map input records=156378157
+Map input records=25083992
+province:831
+Map input records=316220
+省份：831生成conf文件完成！
+Map input records=316220
+province:842
+Map input records=191262720
+Map input records=50150436
+province:842
+Map input records=167444
+省份：842生成conf文件完成！
+Map input records=167444
+province:854
+Map input records=29645453
+Map input records=752842
+province:854
+Map input records=24450
+省份：854生成conf文件完成！
+Map input records=24450
+province:863
+Map input records=44732698
+Map input records=6836920
+province:863
+Map input records=54832
+省份：863生成conf文件完成！
+Map input records=54832
+province:837
+Map input records=229646812
+Map input records=53465626
+province:837
+province:843
+Map input records=250625988
+Map input records=61295105
+province:843
+province:812
+Map input records=61689108
+Map input records=9914629
+province:812
+Map input records=90033
+省份：812生成conf文件完成！
+Map input records=90033
+province:822
+Map input records=96540947
+Map input records=15727977
+province:822
+Map input records=81417
+省份：822生成conf文件完成！
+Map input records=81417
+province:851
+Map input records=733642648
+Map input records=106535443
+province:851
+Map input records=1123960
+省份：851生成conf文件完成！
+Map input records=1123960
+province:834
+Map input records=669204744
+Map input records=51523412
+province:834
+Map input records=365040
+省份：834生成conf文件完成！
+Map input records=365040
+province:852
+Map input records=190332117
+Map input records=32528773
+province:852
+Map input records=289153
+省份：852生成conf文件完成！
+Map input records=289153
+province:835
+Map input records=270869553
+Map input records=37874890
+province:835
+Map input records=191291
+省份：835生成conf文件完成！
+Map input records=191291
+province:865
+Map input records=120984958
+Map input records=46820427
+province:865
+Map input records=96777
+省份：865生成conf文件完成！
+Map input records=96777
+province:814
+Map input records=214705987
+Map input records=20266958
+province:814
+Map input records=100903
+省份：814生成conf文件完成！
+Map input records=100903
+province:823
+Map input records=82398508
+Map input records=20067677
+province:823
+Map input records=143383
+省份：823生成conf文件完成！
+Map input records=143383
+province:813
+Map input records=499335375
+Map input records=65393190
+province:813
