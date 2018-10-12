@@ -1,0 +1,35 @@
+文件多行一段，取7行一大段内容
+[root@k8s-n2 ~]# seq 4 >txt
+[root@k8s-n2 ~]# { echo ;seq 5; } >> txt
+[root@k8s-n2 ~]# { echo ;seq 7; } >> txt
+[root@k8s-n2 ~]# { echo ;seq 2; } >> txt
+[root@k8s-n2 ~]# cat txt
+1
+2
+3
+4
+
+1
+2
+3
+4
+5
+
+1
+2
+3
+4
+5
+6
+7
+
+1
+2
+[root@k8s-n2 ~]# grep -Poz "\n?\K([^\n]+\n)\g'1'{5}[^\n]" txt
+1
+2
+3
+4
+5
+6
+7
