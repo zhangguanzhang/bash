@@ -1,6 +1,5 @@
 # 软件前提
-gcloud+梯子+jq
-
+gcloud+梯子+jq,使用了travis构建,所以写好shell就行了,[点击跳转到对应仓库](https://github.com/zhangguanzhang/gcr.io)
 利用gcloud去查询镜像名和tags
 然后拉取后再改名推送
 v1是每个tag利用docker registry的v2 api去查询,有就continue,没就拉取
@@ -25,19 +24,12 @@ v2的latest标签处理思路
 含有latest标签
 
 gcr.io/google_containers/addon-builder
-
 gcr.io/google_containers/apparmor-loader
-
 gcr.io/google_containers/busybox
-
 gcr.io/google_containers/cadvisor
-
 标签含有分号的镜像
-
 gcr.io/google_containers/github-transform
-
 gcr.io/google_containers/gke-mpi-api-server
-
 gcr.io/google_containers/gke-mpi-metadata-server
 
 参考文档
