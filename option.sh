@@ -61,6 +61,7 @@ while true;do
             break
             ;;
         *)
+	    [[ -z "$1" || "$1" == '--' ]] &&  break
             echo "Internal error!"
             exit 1
             ;;
