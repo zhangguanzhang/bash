@@ -3,7 +3,7 @@
 cookies=cookies
 
 
-curl -s -X POST -D $cookies http://www.acfun.cn/login.aspx -d username=1777xxxxxxxx -d password=xxxxxxxx -H @headers | jq .
+curl -s -X POST -D $cookies https://id.app.acfun.cn/rest/web/login/signin -d username=1777xxxxxxxx -d password=xxxxxxxx -H @headers | jq .
 
 err() {
   printf '%b\n' ""
