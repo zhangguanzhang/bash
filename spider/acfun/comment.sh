@@ -19,7 +19,7 @@ function comment(){
     [ -z "$1" ] && err 'function '${FUNCNAME[0]}' must use with id'
     [ $# -eq 2 ] && content=$2  # 第二个参数可选
     [ $# -eq 3 ] && { pic_num=$2;content=$3; }
-    curl -s -X POST -b $cookies  http://www.acfun.cn/rest/pc-direct/comment/add \
+    curl -sL -X POST -b $cookies  https://www.acfun.cn/rest/pc-direct/comment/add \
         -d "sourceId=${1}&sourceType=1&replyToCommentId=0&content=[emot=ac,${pic_num:=13}/]${content:=前排第一。}" 
     sleep 7
 }
@@ -29,7 +29,7 @@ function get_comment(){
     local json id content
     id=$1
     [ -z "$id" ] && err 'function '${FUNCNAME[0]}' must use with id'
-    json=`curl -sX GET http://www.acfun.cn/comment_list_json.aspx?contentId=$id | jq .data`
+    json=`curl -sX GET https://www.acfun.cn/comment_list_json.aspx?contentId=$id | jq .data`
     [[ $(echo $json | jq '.commentList| length') -eq 0 ]] && comment $id
     echo $json | jq .commentContentArr[].userName | grep -Pq 张馆长 && return 0
     content=`echo $json | jq .commentContentArr[].content`
@@ -41,7 +41,7 @@ function get_comment(){
 
 function comment_first(){
     local ids
-    ids=`curl -s -X POST -b $cookies 'http://www.acfun.cn/rest/pc-direct/feed/followFeed?isGroup=0&groupId=0&count=20&pcursor=1'    | jq '.feedList[].cid'`
+    ids=`curl -s -X POST -b $cookies 'https://www.acfun.cn/rest/pc-direct/feed/followFeed?isGroup=0&groupId=0&count=20&pcursor=1'    | jq '.feedList[].cid'`
     for id in $ids;do
         get_comment $id
     done
@@ -49,7 +49,7 @@ function comment_first(){
 
 function article(){
     local ids
-    ids=`curl -sX GET 'http://webapi.aixifan.com/query/article/list?pageNo=1&size=100&realmIds=25%2C34%2C7%2C6%2C17%2C1%2C2&originalOnly=false&orderType=2&periodType=-1&filterTitleImage=true' \
+    ids=`curl -sX GET 'https://webapi.aixifan.com/query/article/list?pageNo=1&size=100&realmIds=25%2C34%2C7%2C6%2C17%2C1%2C2&originalOnly=false&orderType=2&periodType=-1&filterTitleImage=true' \
         | jq .data.articleList[].id`
     for id in $ids;do
         get_comment $id
