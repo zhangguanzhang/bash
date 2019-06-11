@@ -21,3 +21,29 @@ curl -s https://hub.docker.com/v2/repositories/${repo}/${img_name}/tags/?page_si
 # delete images and/or tags
 curl -X DELETE -s -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${repo}/${img_name}/
 curl -X DELETE -s -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${repo}/${img_name}/tags/${tag}/
+
+
+# get single tag some info
+curl -sL 'https://cloud.docker.com/v2/repositories/zhangguanzhang/gcr.io.google_containers.busybox/tags/1.27.2'   | jq .
+{
+  "name": "1.27.2",
+  "full_size": 715181,
+  "images": [
+    {
+      "size": 715181,
+      "architecture": "amd64",
+      "variant": null,
+      "features": null,
+      "os": "linux",
+      "os_version": null,
+      "os_features": null
+    }
+  ],
+  "id": 30843029,
+  "repository": 5723348,
+  "creator": 2365835,
+  "last_updater": 2365835,
+  "last_updated": "2018-07-15T08:45:33.196114Z",
+  "image_id": null,
+  "v2": true
+}
