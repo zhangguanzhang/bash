@@ -115,7 +115,7 @@ func main() {
 				title := strings.ReplaceAll(playlistItem.Snippet.Title, `"`,`\"`)
 				videoId := playlistItem.ContentDetails.VideoID
 				title = strings.ReplaceAll(title, `$`,`\$`)
-				fmt.Fprintf(fd, `https://www.youtube.com/watch?v=%v '%v'` + "\n", videoId, title)
+				fmt.Fprintf(fd, `https://www.youtube.com/watch?v=%v "%v"` + "\n", videoId, title)
 			}
 
 			nextPageToken = playlistResponse.NextPageToken
