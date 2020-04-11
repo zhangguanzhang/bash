@@ -78,8 +78,8 @@ for os in ${OS_LIST[@]};do
         if [ "$os" == "windows" ];then
             bin_file=${bin_file}.exe
         fi
-        echo -en "building $bin_file \t"
-        save_dir=${OUTPUT}/${dir_name}
+        printf "building %-30s" ${bin_file}
+        save_dir=${OUTPUT}/${dir_name} 
         mkdir -p $save_dir 
         cd $CUR_DIR
         GOOS=$os GOARCH=$arch go build -o ${save_dir}/${bin_file} main.go 2>/dev/null
