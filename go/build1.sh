@@ -84,7 +84,7 @@ for os in ${OS_LIST[@]};do
         cd $CUR_DIR
         GOOS=$os GOARCH=$arch go build -o ${save_dir}/${bin_file} main.go 2>/dev/null
         if [ "$?" -ne 0 ];then
-            echo -e "\t \033[1;31m[failed]\033[0m"
+            echo -e "\t\t \033[1;31m[failed]\033[0m"
             rm -rf $save_dir
             continue
         fi
@@ -95,6 +95,6 @@ for os in ${OS_LIST[@]};do
         tar -zcf $dir_name.tar.gz ${dir_name}/
         cd $CUR_DIR
         rm -rf $save_dir 
-        echo -e "\t \033[1;32m[success]\033[0m"
+        echo -e "\t\t \033[1;32m[success]\033[0m"
     done
 done
