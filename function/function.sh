@@ -76,3 +76,7 @@ dehumanise() {
 #        /TB$/{    printpower($1, 10, 12)}'
 #   done
 } 
+
+# default gw src ip
+ip route get 1 | awk '{ for(i=0;i<=NF;i++){if($i=="src"){print $(i+1);exit;}} }'
+
