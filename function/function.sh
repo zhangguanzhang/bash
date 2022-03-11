@@ -77,6 +77,26 @@ dehumanise() {
 #   done
 } 
 
-# default gw src ip
-ip route get 1 | awk '{ for(i=0;i<=NF;i++){if($i=="src"){print $(i+1);exit;}} }'
+get_gw_ip(){
+    # default gw src ip
+    ip route get 1 | awk '{ for(i=0;i<=NF;i++){if($i=="src"){print $(i+1);exit;}} }'
+}
 
+# getJsonVal "['hosts']" < ${CUR_DIR}/conf/xxx.conf
+# 拼接 py 代码打印json，不依赖二进制读取json
+function getJsonVal() { 
+    python -c "import json,sys;sys.stdout.write(json.dumps(json.load(sys.stdin)$1))" | sed -r 's#^"##;s#"$##' 
+}
+
+# shell array to json array
+# json_array ${xxx[@]}
+function json_array() {
+  echo -n '['
+  while [ $# -gt 0 ]; do
+    x=${1//\\/\\\\}
+    echo -n \"${x//\"/\\\"}\"
+    [ $# -gt 1 ] && echo -n ', '
+    shift
+  done
+  echo ']'
+}
