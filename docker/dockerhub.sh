@@ -18,9 +18,10 @@ curl -s https://hub.docker.com/v2/repositories/${repo}/?page_size=100 | jq -r .r
 # get all the tags of the image
 curl -s https://hub.docker.com/v2/repositories/${repo}/${img_name}/tags/?page_size=1000 | jq -r '.results[].name'
 
+# https://github.com/docker/hub-feedback/issues/2127
 # delete images and/or tags
-curl -X DELETE -s -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${repo}/${img_name}/
-curl -X DELETE -s -H "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${repo}/${img_name}/tags/${tag}/
+curl -X DELETE -s -LH "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${repo}/${img_name}/
+curl -X DELETE -s -LH "Authorization: JWT ${TOKEN}" https://hub.docker.com/v2/repositories/${repo}/${img_name}/tags/${tag}/
 
 
 # get single tag some info
